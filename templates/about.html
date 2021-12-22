@@ -3,4 +3,12 @@
 {% block content %}
     <h1>About Page!</h1>
     <p>This is template.</p>
+    {{my_text}}, {{my_list}}
+{% endblock %}
+{% block other_content %}
+    <ul>
+    {% for subitem in my_list %}
+        <li>{{forloop.counter}}-{{subitem}}</li>
+    {% endfor %}
+    </ul>
 {% endblock %}
