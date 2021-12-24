@@ -8,7 +8,11 @@
 {% block other_content %}
     <ul>
     {% for subitem in my_list %}
-        <li>{{forloop.counter}}-{{subitem}}</li>
+        {% if subitem == 323 %}
+            <li>{{forloop.counter}}-{{subitem|add:22}}</li>
+        {% else %}
+            <li>{{forloop.counter}}-{{subitem}}</li>
+        {% endif %}
     {% endfor %}
     </ul>
 {% endblock %}
