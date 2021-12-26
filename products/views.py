@@ -1,5 +1,5 @@
 from django.http import Http404
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Product
 from .forms import ProductForm, RowProductForm
 
@@ -77,3 +77,20 @@ def dynamic_lookup_view(req, my_id):
         'object': obj
     }
     return render(req, 'products/product_detail.html', context);
+
+def delete_product_view(req, my_id):
+    obj = get_object_or_404(Product, id=my_id)
+    if(req.method == "POST"):
+        obj.delete();
+        return redirect('../../')
+    context = {
+        'obj': obj
+    }
+    return render(req, 'products/product_delete.html', context)
+
+def preview_products_list(req):
+    query_set = Product.objects.all();
+    context = {
+        'object_list': query_set
+    }
+    return render(req, 'products/product_list.html', context)
